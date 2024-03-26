@@ -1,10 +1,12 @@
 //Devuelve los parámetros enviados
+scadena = "{"
 nRegs = SCH_BO_REST_REQUEST.Count()
 For i = 0 To nRegs - 1
     SCH_BO_REST_REQUEST.MoveTo(i)
-    SCH_BO_REST_RESPONSE.AddRegister()
-    SCH_BO_REST_RESPONSE.ID_ARG = SCH_BO_REST_REQUEST.ID_ARG
-    SCH_BO_REST_RESPONSE.VALUE_ARG = SCH_BO_REST_REQUEST.VALUE_ARG
-    SCH_BO_REST_RESPONSE.VALUE_ARG_BLOB = SCH_BO_REST_REQUEST.VALUE_ARG_BLOB
+    If i > 0 Then scadena = scadena + ","
+    scadena = scadena + chr(M4_DOUBLE_QUOTE) + ToString(SCH_BO_REST_REQUEST.ID_ARG,0) + chr(M4_DOUBLE_QUOTE) + ": " + chr(M4_DOUBLE_QUOTE) + SCH_BO_REST_REQUEST.VALUE_ARG + chr(M4_DOUBLE_QUOTE)
 Next
+scadena = scadena + "}"
+SCH_BO_REST_RESPONSE.AddRegister()
+SCH_BO_REST_RESPONSE.VALUE_ARG = sCadena
 SCH_BO_REST.RETURN_CODE = 200
