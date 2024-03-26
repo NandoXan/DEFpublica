@@ -6,6 +6,7 @@ If nRegs > 0 Then
 Else
     sRespuesta = "No me has enviado nada"
     SCH_BO_REST.RETURN_CODE = 400
+    SetLog(-1, 50,1,1, sRespuesta)
 end If
 SCH_BO_REST_RESPONSE.AddRegister()
 SCH_BO_REST_RESPONSE.VALUE_ARG = sRespuesta
