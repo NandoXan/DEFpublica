@@ -1,3 +1,11 @@
+//Error si no me envías parámetros y ok si me los envías y te digo el número
+nRegs = SCH_BO_REST_REQUEST.Count()
+If nRegs > 0 Then
+    sRespuesta = "Me has enviado " + ToString(nRegs,0) + " parámetros"
+    SCH_BO_REST.RETURN_CODE = 200
+Else
+    sRespuesta = "No me has enviado nada"
+    SCH_BO_REST.RETURN_CODE = 400
+end If
 SCH_BO_REST_RESPONSE.AddRegister()
-SCH_BO_REST_RESPONSE.VALUE_ARG = "Te he escuchado"
-SCH_BO_REST.RETURN_CODE = 200
+SCH_BO_REST_RESPONSE.VALUE_ARG = sRespuesta
